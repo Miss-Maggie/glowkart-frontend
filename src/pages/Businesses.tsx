@@ -12,7 +12,8 @@ import {
   Globe,
   Heart,
   Filter,
-  Store
+  Store,
+  ArrowLeft
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -94,6 +95,12 @@ const Businesses = () => {
               <span className="text-xl font-bold text-primary">GlowKart Hub</span>
             </Link>
             <div className="flex items-center space-x-4">
+              <Button variant="ghost" asChild>
+                <Link to="/" className="flex items-center">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Back to Home
+                </Link>
+              </Button>
               <Button variant="ghost" asChild>
                 <Link to="/login">Sign In</Link>
               </Button>
