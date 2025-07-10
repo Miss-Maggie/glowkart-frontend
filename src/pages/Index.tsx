@@ -102,9 +102,11 @@ const Index = () => {
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button variant="outline" size="lg" className="bg-white/10 border-white/30 text-primary-foreground hover:bg-white/20">
-                  <Search className="mr-2 h-5 w-5" />
-                  Explore Businesses
+                <Button variant="outline" size="lg" className="bg-white/10 border-white/30 text-primary-foreground hover:bg-white/20" asChild>
+                  <Link to="/businesses">
+                    <Search className="mr-2 h-5 w-5" />
+                    Explore Businesses
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -229,19 +231,19 @@ const Index = () => {
             <div>
               <h4 className="font-semibold mb-4">For Businesses</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li>Create Listing</li>
-                <li>Manage Reviews</li>
-                <li>Analytics</li>
-                <li>Support</li>
+                <li><Link to="/create-listing" className="hover:text-primary transition-colors">Create Listing</Link></li>
+                <li><Link to="/dashboard" className="hover:text-primary transition-colors">Manage Reviews</Link></li>
+                <li><Link to="/dashboard" className="hover:text-primary transition-colors">Analytics</Link></li>
+                <li><Link to="/dashboard" className="hover:text-primary transition-colors">Support</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">For Customers</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li>Find Businesses</li>
-                <li>Write Reviews</li>
-                <li>Save Favorites</li>
-                <li>Get Deals</li>
+                <li><Link to="/businesses" className="hover:text-primary transition-colors">Find Businesses</Link></li>
+                <li><Link to="/businesses" className="hover:text-primary transition-colors">Write Reviews</Link></li>
+                <li><Link to="/businesses" className="hover:text-primary transition-colors">Save Favorites</Link></li>
+                <li><Link to="/businesses" className="hover:text-primary transition-colors">Get Deals</Link></li>
               </ul>
             </div>
             <div>

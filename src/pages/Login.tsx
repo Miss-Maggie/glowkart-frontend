@@ -14,6 +14,8 @@ const Login = () => {
     e.preventDefault();
     // Handle login logic here
     console.log("Login attempt:", { email, password });
+    // Redirect to dashboard after successful login
+    window.location.href = "/dashboard";
   };
 
   return (

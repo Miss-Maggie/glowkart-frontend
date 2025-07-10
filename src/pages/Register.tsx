@@ -20,6 +20,8 @@ const Register = () => {
     e.preventDefault();
     // Handle registration logic here
     console.log("Registration attempt:", formData);
+    // Redirect to dashboard after successful registration
+    window.location.href = "/dashboard";
   };
 
   const handleInputChange = (field: string, value: string) => {
