@@ -205,9 +205,11 @@ const Index = () => {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button variant="outline" size="lg" className="bg-white/10 border-white/30 text-primary-foreground hover:bg-white/20">
-              <Clock className="mr-2 h-5 w-5" />
-              Book a Demo
+            <Button variant="outline" size="lg" className="bg-white/10 border-white/30 text-primary-foreground hover:bg-white/20" asChild>
+              <Link to="/contact">
+                <Clock className="mr-2 h-5 w-5" />
+                Book a Demo
+              </Link>
             </Button>
           </div>
         </div>
@@ -249,10 +251,10 @@ const Index = () => {
             <div>
               <h4 className="font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li>About Us</li>
-                <li>Contact</li>
-                <li>Privacy</li>
-                <li>Terms</li>
+                <li><Link to="/about" className="hover:text-primary transition-colors">About Us</Link></li>
+                <li><Link to="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
+                <li><Link to="/privacy" className="hover:text-primary transition-colors">Privacy</Link></li>
+                <li><Link to="/terms" className="hover:text-primary transition-colors">Terms</Link></li>
               </ul>
             </div>
           </div>
