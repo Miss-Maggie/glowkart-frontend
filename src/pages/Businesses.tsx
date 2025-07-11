@@ -13,7 +13,8 @@ import {
   Heart,
   Filter,
   Store,
-  ArrowLeft
+  ArrowLeft,
+  ShoppingCart
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -99,6 +100,12 @@ const Businesses = () => {
                 <Link to="/" className="flex items-center">
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   Back to Home
+                </Link>
+              </Button>
+              <Button variant="ghost" size="sm" asChild>
+                <Link to="/cart" className="flex items-center">
+                  <ShoppingCart className="h-4 w-4 mr-2" />
+                  Cart
                 </Link>
               </Button>
               <Button variant="ghost" asChild>
@@ -198,8 +205,12 @@ const Businesses = () => {
                 </div>
                 
                 <div className="flex gap-2 pt-2">
-                  <Button size="sm" className="flex-1">View Details</Button>
-                  <Button variant="outline" size="sm">Contact</Button>
+                  <Button size="sm" className="flex-1" asChild>
+                    <Link to={`/business/${business.id}`}>View Details</Link>
+                  </Button>
+                  <Button variant="outline" size="sm" asChild>
+                    <Link to={`/contact?business=${business.name}`}>Contact</Link>
+                  </Button>
                 </div>
               </CardContent>
             </Card>
