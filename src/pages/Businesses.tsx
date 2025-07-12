@@ -17,6 +17,7 @@ import {
   ShoppingCart
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import MobileLayout from "@/components/MobileLayout";
 
 const Businesses = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -84,40 +85,7 @@ const Businesses = () => {
   );
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b bg-white/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
-                <Store className="h-5 w-5 text-primary-foreground" />
-              </div>
-              <span className="text-xl font-bold text-primary">GlowKart Hub</span>
-            </Link>
-            <div className="flex items-center space-x-4">
-              <Button variant="ghost" asChild>
-                <Link to="/" className="flex items-center">
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back to Home
-                </Link>
-              </Button>
-              <Button variant="ghost" size="sm" asChild>
-                <Link to="/cart" className="flex items-center">
-                  <ShoppingCart className="h-4 w-4 mr-2" />
-                  Cart
-                </Link>
-              </Button>
-              <Button variant="ghost" asChild>
-                <Link to="/login">Sign In</Link>
-              </Button>
-              <Button variant="hero" asChild>
-                <Link to="/register">Get Started</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
+    <MobileLayout>
 
       <div className="container mx-auto px-4 py-8">
         {/* Search Section */}
@@ -144,7 +112,18 @@ const Businesses = () => {
           {/* Categories */}
           <div className="flex flex-wrap gap-2">
             {categories.map((category) => (
-              <Badge key={category} variant="secondary" className="cursor-pointer hover:bg-accent">
+              <Badge 
+                key={category} 
+                variant="secondary" 
+                className="cursor-pointer hover:bg-accent transition-colors"
+                onClick={() => {
+                  if (category === "All") {
+                    setSearchTerm("");
+                  } else {
+                    setSearchTerm(category);
+                  }
+                }}
+              >
                 {category}
               </Badge>
             ))}
@@ -223,7 +202,7 @@ const Businesses = () => {
           </div>
         )}
       </div>
-    </div>
+    </MobileLayout>
   );
 };
 

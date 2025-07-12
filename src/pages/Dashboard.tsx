@@ -61,9 +61,11 @@ const Dashboard = () => {
                     Back to Home
                   </Link>
                 </Button>
-                <Button className="bg-accent hover:bg-accent/90 text-accent-foreground">
-                  <Plus className="mr-2 h-4 w-4" />
-                  Add Product
+                <Button className="bg-accent hover:bg-accent/90 text-accent-foreground" asChild>
+                  <Link to="/create-listing">
+                    <Plus className="mr-2 h-4 w-4" />
+                    Add Product
+                  </Link>
                 </Button>
               </div>
             </div>

@@ -151,13 +151,17 @@ const BusinessDetails = () => {
               </div>
 
               <div className="flex gap-3">
-                <Button className="flex-1">
-                  <MessageCircle className="mr-2 h-4 w-4" />
-                  Contact Business
+                <Button className="flex-1" asChild>
+                  <Link to={`/contact?business=${business.name}`}>
+                    <MessageCircle className="mr-2 h-4 w-4" />
+                    Contact Business
+                  </Link>
                 </Button>
-                <Button variant="outline">
-                  <Calendar className="mr-2 h-4 w-4" />
-                  Book Appointment
+                <Button variant="outline" asChild>
+                  <Link to={`/contact?business=${business.name}&action=book`}>
+                    <Calendar className="mr-2 h-4 w-4" />
+                    Book Appointment
+                  </Link>
                 </Button>
               </div>
             </div>

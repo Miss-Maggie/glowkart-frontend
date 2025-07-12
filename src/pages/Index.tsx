@@ -60,6 +60,12 @@ const Index = () => {
               <span className="text-xl font-bold text-primary">GlowKart Hub</span>
             </div>
             <div className="flex items-center space-x-4">
+              <Button variant="ghost" size="sm" asChild className="hidden sm:flex">
+                <Link to="/cart" className="flex items-center">
+                  <Search className="h-4 w-4 mr-2" />
+                  Shop
+                </Link>
+              </Button>
               <Button variant="ghost" asChild>
                 <Link to="/login">
                   <LogIn className="mr-2 h-4 w-4" />
