@@ -37,11 +37,19 @@ const Checkout = () => {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <Card className="w-full max-w-md text-center">
           <CardContent className="p-8">
-            <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold mb-2">Order Placed!</h2>
-            <p className="text-muted-foreground">
+            <CheckCircle className="h-16 w-16 text-success mx-auto mb-4" />
+            <h2 className="text-2xl font-bold mb-2">Order Placed Successfully!</h2>
+            <p className="text-muted-foreground mb-4">
               Thank you for supporting local businesses. You'll receive a confirmation email shortly.
             </p>
+            <div className="space-y-2">
+              <Button asChild className="w-full">
+                <Link to="/businesses">Continue Shopping</Link>
+              </Button>
+              <Button variant="outline" asChild className="w-full">
+                <Link to="/">Go to Home</Link>
+              </Button>
+            </div>
           </CardContent>
         </Card>
       </div>
@@ -163,6 +171,10 @@ const Checkout = () => {
                     <Label htmlFor="card">Credit/Debit Card</Label>
                   </div>
                   <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="mpesa" id="mpesa" />
+                    <Label htmlFor="mpesa">M-Pesa Mobile Money</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
                     <RadioGroupItem value="paypal" id="paypal" />
                     <Label htmlFor="paypal">PayPal</Label>
                   </div>
@@ -184,6 +196,18 @@ const Checkout = () => {
                         <Input id="cvv" placeholder="123" />
                       </div>
                     </div>
+                  </div>
+                )}
+
+                {paymentMethod === "mpesa" && (
+                  <div className="space-y-4 pt-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="mpesaNumber">M-Pesa Phone Number</Label>
+                      <Input id="mpesaNumber" placeholder="254712345678" />
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      You'll receive an STK push notification to complete the payment
+                    </p>
                   </div>
                 )}
               </CardContent>
