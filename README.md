@@ -1,73 +1,228 @@
-# Welcome to your Lovable project
+## 🌟 GlowKart Hub
 
-## Project info
+**GlowKart Hub** is a full-stack marketplace platform that helps **local businesses** reach digital customers. Shoppers can find fast, trustworthy nearby stores — supporting their community instead of global brands.
 
-**URL**: https://lovable.dev/projects/a9e20d30-27b7-4e59-9af8-f148bed2f6e2
+---
 
-## How can I edit this code?
+### 📌 Table of Contents
 
-There are several ways of editing your application.
+* [✨ Features](#-features)
+* [📦 Tech Stack](#-tech-stack)
+* [📁 Project Structure](#-project-structure)
+* [⚙️ Backend Setup](#️-backend-setup)
+* [🎨 Frontend Setup](#-frontend-setup)
+* [🔐 Authentication](#-authentication)
+* [🧪 Testing](#-testing)
+* [🛣️ API Endpoints](#️-api-endpoints)
+* [📸 Screenshots](#-screenshots)
+* [📄 License](#-license)
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a9e20d30-27b7-4e59-9af8-f148bed2f6e2) and start prompting.
+## ✨ Features
 
-Changes made via Lovable will be committed automatically to this repo.
+#### 🛍️ For Shoppers
 
-**Use your preferred IDE**
+* Register/login
+* Browse nearby products
+* Place orders
+* View order history
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+#### 🏪 For Store Owners
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+* Create and manage stores
+* Add products
+* View customer orders
+* Update order status
 
-Follow these steps:
+#### 🔐 Auth & Security
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+* JWT-based login
+* Protected routes
+* Role-based access
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+#### 🧾 Orders
 
-# Step 3: Install the necessary dependencies.
-npm i
+* Create, view, and update orders
+* Automatically calculate totals
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+#### 💬 Coming Soon
+
+* Product search/filter
+* Favorites & reviews
+* Admin dashboard
+
+---
+
+## 📦 Tech Stack
+
+| Frontend            | Backend            | Dev Tools              |
+| ------------------- | ------------------ | ---------------------- |
+| React + Vite        | Express.js         | PNPM + TypeScript      |
+| Tailwind CSS v4     | Node.js            | Nodemon / ts-node-dev  |
+| TypeScript          | MongoDB + Mongoose | Dotenv, Morgan, CORS   |
+| Axios, React-Router | JWT & Bcrypt       | Thunder Client/Postman |
+
+---
+
+## 📁 Project Structure
+
+### 🔙 Backend `/glowkart-backend`
+
+```
+src/
+│
+├── controllers/     # Logic for users, stores, products, orders
+├── models/          # Mongoose schemas
+├── middleware/      # Auth & error middleware
+├── routes/          # API route handlers
+├── utils/           # Helper functions
+├── config/          # DB connection, env config
+├── server.ts        # Entry point
+└── app.ts           # Express app setup
 ```
 
-**Edit a file directly in GitHub**
+### 🎨 Frontend `/glowkart-client`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```
+src/
+│
+├── components/      # Reusable UI components
+├── pages/           # Route-based pages
+├── hooks/           # Custom React hooks
+├── context/         # Auth or Global Contexts
+├── services/        # API functions via Axios
+├── App.tsx          # Main app
+└── main.tsx         # Entry file
+```
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## ⚙️ Backend Setup
 
-## What technologies are used for this project?
+1. **Clone repo**
 
-This project is built with:
+   ```bash
+   git clone https://github.com/Miss-Maggie/glowkart-local-connect.git
+   cd glowkart-backend
+   ```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+2. **Install dependencies**
 
-## How can I deploy this project?
+   ```bash
+   pnpm install
+   ```
 
-Simply open [Lovable](https://lovable.dev/projects/a9e20d30-27b7-4e59-9af8-f148bed2f6e2) and click on Share -> Publish.
+3. **Environment variables**
 
-## Can I connect a custom domain to my Lovable project?
+   Create a `.env` file:
 
-Yes, you can!
+   ```
+   PORT=5000
+   MONGO_URI=mongodb://127.0.0.1:27017/glowkart
+   JWT_SECRET=your-secret-key
+   ```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+4. **Run server**
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+   ```bash
+   pnpm run dev
+   ```
+
+---
+
+## 🎨 Frontend Setup
+
+1. **Go to frontend folder**
+
+   ```bash
+   cd glowkart-client
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   pnpm install
+   ```
+
+3. **Run the app**
+
+   ```bash
+   pnpm dev
+   ```
+
+4. **Vite Config is already set up for:**
+
+   * Tailwind v4
+   * TypeScript
+   * React Router
+   * Absolute imports (via `tsconfig.json`)
+
+---
+
+## 🔐 Authentication
+
+* JWT tokens stored in localStorage
+* Protected routes using middleware
+* Role-based access (shopper, store owner)
+
+---
+
+## 🧪 Testing Strategy
+
+| Tool              | Purpose                      |
+| ----------------- | ---------------------------- |
+| Jest              | Unit tests for backend logic |
+| Supertest         | API endpoint testing         |
+| MongoDB Memory    | In-memory DB for tests       |
+| React Testing Lib | Frontend component testing   |
+| Cypress (opt.)    | E2E UI testing               |
+
+> Tests are organized in `__tests__/` folders next to their modules.
+
+---
+
+## 🛣️ API Endpoints
+
+Here are just a few:
+
+### ✅ Auth
+
+* `POST /api/auth/register`
+* `POST /api/auth/login`
+
+### 🏪 Store
+
+* `POST /api/stores` (owner only)
+* `GET /api/stores/:id`
+
+### 🛍️ Products
+
+* `POST /api/products`
+* `GET /api/products?store=123`
+
+### 📦 Orders
+
+* `POST /api/orders`
+* `GET /api/orders/mine` (user)
+* `GET /api/orders/store/:storeId` (owner)
+* `PUT /api/orders/:id/status`
+
+> Full Swagger docs can be added using `swagger-ui-express` if needed.
+
+---
+
+## 📸 Screenshots (optional)
+
+Include screenshots of:
+
+* Landing page
+* Store dashboard
+* Product listing
+* Order flow
+
+---
+
+## 📄 License
+
+MIT © 2025 Magdaline Muthui (GlowKart Team)
