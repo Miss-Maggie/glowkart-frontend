@@ -108,12 +108,22 @@ const MobileLayout = ({ children }: MobileLayoutProps) => {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-4">
-              <Button variant="ghost" size="sm" asChild>
-                <Link to="/cart" className="flex items-center">
-                  <ShoppingCart className="h-4 w-4 mr-2" />
-                  Cart
-                </Link>
-              </Button>
+              <nav className="flex items-center space-x-6 mr-8">
+                {navItems.slice(0, -1).map((item) => (
+                  <Link
+                    key={item.href}
+                    to={item.href}
+                    className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-colors ${
+                      isActiveRoute(item.href)
+                        ? "bg-primary/10 text-primary font-medium"
+                        : "text-muted-foreground hover:text-primary hover:bg-primary/5"
+                    }`}
+                  >
+                    <item.icon className="h-4 w-4" />
+                    <span>{item.label}</span>
+                  </Link>
+                ))}
+              </nav>
               <Button variant="ghost" asChild>
                 <Link to="/login">Sign In</Link>
               </Button>

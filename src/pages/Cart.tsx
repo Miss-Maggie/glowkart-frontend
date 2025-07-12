@@ -47,6 +47,23 @@ const Cart = () => {
     setCartItems(cartItems.filter(item => item.id !== id));
   };
 
+  const addToCart = (productId: number, productName: string, businessName: string, price: number) => {
+    const existingItem = cartItems.find(item => item.id === productId);
+    if (existingItem) {
+      updateQuantity(productId, existingItem.quantity + 1);
+    } else {
+      const newItem = {
+        id: productId,
+        name: productName,
+        business: businessName,
+        price: price,
+        quantity: 1,
+        image: "/placeholder.svg"
+      };
+      setCartItems([...cartItems, newItem]);
+    }
+  };
+
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const tax = subtotal * 0.08; // 8% tax
   const total = subtotal + tax;
@@ -265,7 +282,12 @@ const Cart = () => {
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-primary text-lg">${product.price}</span>
-                    <Button size="sm">Add to Cart</Button>
+                    <Button 
+                      size="sm" 
+                      onClick={() => addToCart(product.id, product.name, product.business, product.price)}
+                    >
+                      Add to Cart
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
