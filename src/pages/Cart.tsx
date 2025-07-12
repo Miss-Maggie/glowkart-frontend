@@ -212,6 +212,66 @@ const Cart = () => {
             </Card>
           </div>
         </div>
+
+        {/* Recommended Products Section */}
+        <div className="mt-12">
+          <h2 className="text-2xl font-bold mb-6">You might also like</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                id: 4,
+                name: "Organic Honey (500ml)",
+                business: "Local Farms Co",
+                price: 15.99,
+                image: "/placeholder.svg",
+                rating: 4.7
+              },
+              {
+                id: 5,
+                name: "Handmade Candles Set",
+                business: "Artisan Crafts",
+                price: 32.50,
+                image: "/placeholder.svg", 
+                rating: 4.9
+              },
+              {
+                id: 6,
+                name: "Fresh Pasta Bundle",
+                business: "Italian Kitchen",
+                price: 22.99,
+                image: "/placeholder.svg",
+                rating: 4.8
+              }
+            ].map((product) => (
+              <Card key={product.id} className="hover:shadow-lg transition-shadow">
+                <CardContent className="p-4">
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-full h-40 object-cover rounded-lg mb-3"
+                  />
+                  <h3 className="font-semibold text-lg mb-1">{product.name}</h3>
+                  <p className="text-muted-foreground text-sm mb-2">{product.business}</p>
+                  <div className="flex items-center mb-3">
+                    {[...Array(5)].map((_, i) => (
+                      <span 
+                        key={i} 
+                        className={`text-sm ${i < Math.floor(product.rating) ? 'text-yellow-400' : 'text-gray-300'}`}
+                      >
+                        ★
+                      </span>
+                    ))}
+                    <span className="text-sm text-muted-foreground ml-1">({product.rating})</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-primary text-lg">${product.price}</span>
+                    <Button size="sm">Add to Cart</Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
