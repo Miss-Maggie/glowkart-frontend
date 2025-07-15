@@ -12,7 +12,16 @@ const Login = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic here
+    // Mock login logic - in real app this would be API call
+    const userData = {
+      name: email.includes('business') ? 'Sarah\'s Bakery' : 'John Doe',
+      email: email,
+      type: email.includes('business') ? 'business' : 'shopper'
+    };
+    
+    // Store user data for demo purposes
+    localStorage.setItem('currentUser', JSON.stringify(userData));
+    
     console.log("Login attempt:", { email, password });
     // Redirect to dashboard after successful login
     window.location.href = "/dashboard";
@@ -36,7 +45,10 @@ const Login = () => {
             </div>
             <CardTitle className="text-2xl font-bold">Welcome Back</CardTitle>
             <CardDescription>
-              Sign in to your GlowKart Hub account
+              Sign in to your GlowKart Hub account<br />
+              <small className="text-xs text-muted-foreground">
+                Tip: Use any email with "business" for business dashboard
+              </small>
             </CardDescription>
           </CardHeader>
           <CardContent>

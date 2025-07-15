@@ -28,9 +28,22 @@ import {
   AlertCircle
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { DashboardLayout } from "@/components/DashboardLayout";
+import businessDashboardImage from "@/assets/business-dashboard.jpg";
+import shopperDashboardImage from "@/assets/shopper-dashboard.jpg";
 
 const Dashboard = () => {
-  const [userType, setUserType] = useState("shopper"); // This would come from auth context
+  // Get user data from localStorage
+  const getUserData = () => {
+    const stored = localStorage.getItem('currentUser');
+    if (stored) {
+      return JSON.parse(stored);
+    }
+    return { name: 'Guest User', email: 'guest@example.com', type: 'shopper' };
+  };
+
+  const userData = getUserData();
+  const [userType, setUserType] = useState(userData.type);
 
   // Business Owner Data
   const businessStats = [
@@ -76,13 +89,14 @@ const Dashboard = () => {
 
   if (userType === "business") {
     return (
-      <div className="min-h-screen bg-background">
+      <DashboardLayout>
+        <div className="min-h-screen bg-background">
         <header className="border-b bg-white/50 backdrop-blur-sm">
           <div className="container mx-auto px-4 py-4">
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-2xl font-bold text-primary">Business Dashboard</h1>
-                <p className="text-muted-foreground">Welcome back, Sarah's Bakery!</p>
+                <p className="text-muted-foreground">Welcome back, {userData.name}!</p>
               </div>
               <div className="flex items-center space-x-4">
                 <Button 
@@ -183,12 +197,16 @@ const Dashboard = () => {
                 </Card>
               </div>
 
-              <Card>
-                <CardHeader>
+              <Card className="relative overflow-hidden">
+                <div 
+                  className="absolute inset-0 bg-cover bg-center opacity-10"
+                  style={{ backgroundImage: `url(${businessDashboardImage})` }}
+                />
+                <CardHeader className="relative">
                   <CardTitle>Quick Actions</CardTitle>
                   <CardDescription>Common tasks to grow your business</CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="relative">
                   <div className="grid gap-4 md:grid-cols-3">
                     <Button variant="outline" className="h-16 flex-col space-y-2">
                       <Store className="h-5 w-5" />
@@ -314,19 +332,21 @@ const Dashboard = () => {
             </TabsContent>
           </Tabs>
         </div>
-      </div>
+        </div>
+      </DashboardLayout>
     );
   }
 
   // Shopper Dashboard
   return (
-    <div className="min-h-screen bg-background">
+    <DashboardLayout>
+      <div className="min-h-screen bg-background">
       <header className="border-b bg-white/50 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-primary">My Dashboard</h1>
-              <p className="text-muted-foreground">Welcome back, John!</p>
+              <p className="text-muted-foreground">Welcome back, {userData.name}!</p>
             </div>
             <div className="flex items-center space-x-4">
               <Button 
@@ -452,12 +472,16 @@ const Dashboard = () => {
             </div>
 
             {/* Quick Actions */}
-            <Card>
-              <CardHeader>
+            <Card className="relative overflow-hidden">
+              <div 
+                className="absolute inset-0 bg-cover bg-center opacity-10"
+                style={{ backgroundImage: `url(${shopperDashboardImage})` }}
+              />
+              <CardHeader className="relative">
                 <CardTitle>Quick Actions</CardTitle>
                 <CardDescription>Things you can do right now</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="relative">
                 <div className="grid gap-4 md:grid-cols-4">
                   <Button variant="outline" className="h-16 flex-col space-y-2" asChild>
                     <Link to="/businesses">
@@ -590,7 +614,8 @@ const Dashboard = () => {
           </TabsContent>
         </Tabs>
       </div>
-    </div>
+      </div>
+    </DashboardLayout>
   );
 };
 
