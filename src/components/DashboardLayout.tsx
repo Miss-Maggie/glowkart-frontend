@@ -9,27 +9,27 @@ interface DashboardLayoutProps {
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const isMobile = useIsMobile();
 
-  if (!isMobile) {
-    // Desktop: use regular layout without sidebar for now
-    return <>{children}</>;
+  // For mobile: use sidebar layout
+  if (isMobile) {
+    return (
+      <SidebarProvider>
+        <div className="min-h-screen flex w-full">
+          <AppSidebar />
+          
+          <div className="flex-1 flex flex-col">
+            <header className="h-12 flex items-center border-b bg-white/50 backdrop-blur-sm px-4">
+              <SidebarTrigger />
+            </header>
+            
+            <main className="flex-1">
+              {children}
+            </main>
+          </div>
+        </div>
+      </SidebarProvider>
+    );
   }
 
-  // Mobile: use sidebar layout
-  return (
-    <SidebarProvider>
-      <div className="min-h-screen flex w-full">
-        <AppSidebar />
-        
-        <div className="flex-1 flex flex-col">
-          <header className="h-12 flex items-center border-b bg-white/50 backdrop-blur-sm px-4">
-            <SidebarTrigger />
-          </header>
-          
-          <main className="flex-1">
-            {children}
-          </main>
-        </div>
-      </div>
-    </SidebarProvider>
-  );
+  // For desktop: render children directly (Dashboard has its own layout)
+  return <div className="w-full">{children}</div>;
 }
