@@ -4,27 +4,36 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { LogIn, Mail, Lock, ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Mock login logic - in real app this would be API call
-    const userData = {
-      name: email.includes('business') ? 'Sarah\'s Bakery' : 'John Doe',
-      email: email,
+    
+    // Mock login logic with specific users for better demo
+    const mockUsers = {
+      'magdalinemutave001@gmail.com': { name: 'Magdaline Mutave', type: 'business' },
+      'shopper@example.com': { name: 'Jane Shopper', type: 'shopper' }
+    };
+    
+    const userType = mockUsers[email as keyof typeof mockUsers];
+    const userData = userType || { 
+      name: email.includes('business') ? email.split('@')[0] + ' Business' : email.split('@')[0], 
       type: email.includes('business') ? 'business' : 'shopper'
     };
     
-    // Store user data for demo purposes
-    localStorage.setItem('currentUser', JSON.stringify(userData));
+    // Store user data in localStorage
+    localStorage.setItem('currentUser', JSON.stringify({
+      ...userData,
+      email: email
+    }));
     
-    console.log("Login attempt:", { email, password });
-    // Redirect to dashboard after successful login
-    window.location.href = "/dashboard";
+    // Use navigate for faster SPA navigation
+    navigate('/dashboard', { replace: true });
   };
 
   return (
@@ -47,7 +56,7 @@ const Login = () => {
             <CardDescription>
               Sign in to your GlowKart Hub account<br />
               <small className="text-xs text-muted-foreground">
-                Tip: Use any email with "business" for business dashboard
+                Tip: Use "magdalinemutave001@gmail.com" for business dashboard
               </small>
             </CardDescription>
           </CardHeader>
